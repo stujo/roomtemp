@@ -1,0 +1,2 @@
+class CurrentVotesController < ApplicationController
+end

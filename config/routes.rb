@@ -1,4 +1,6 @@
 Roomtemp::Application.routes.draw do
+  resources :current_votes
+
   resources :votes
 
   resources :rooms
