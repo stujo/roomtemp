@@ -1,0 +1,8 @@
+p#notice = notice
+
+H1.page_header
+  = @room.name
+H3
+  'Owner:
+  = link_to @room.user_name, user_path(@room.user) unless @room.user.nil?
+

@@ -1,1 +1,3 @@
-h3 Home
+h1.page-heading Active Rooms
+- @rooms.each do |room|
+  = render partial: 'rooms/thumbnail', :locals => { room: room }
