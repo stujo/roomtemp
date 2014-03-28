@@ -1,4 +1,6 @@
 Roomtemp::Application.routes.draw do
+  resources :votes
+
   resources :rooms
 
   root :to => "home#index"
