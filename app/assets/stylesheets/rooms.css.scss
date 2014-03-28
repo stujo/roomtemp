@@ -1,3 +1,23 @@
 // Place all the styles related to the Rooms controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.room_thumbnail {
+  background-color: #DDFFDD;
+  border: 2px solid #CCCCCC;
+  margin-bottom: 5px;
+  height: 200px;
+}
+
+.room-container .room_thumbnail {
+  width: 200px;
+  float: left;
+}
+
+.room_name
+{
+  color: #333333;
+  font-weight: bold;
+  padding: 5px;
+  text-shadow: 0 1px 0 #fff;
+  background-image: linear-gradient(#fafafa, #eaeaea);
+}

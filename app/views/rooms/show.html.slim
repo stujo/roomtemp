@@ -1,8 +1,12 @@
-p#notice = notice
+.room-show
+  .row
+    .col-md-4.col-sm-6.col-xs-12
+      = render partial: 'rooms/thumbnail', :locals => { room: @room }
 
-H1.page_header
-  = @room.name
-H3
-  'Owner:
-  = link_to @room.user_name, user_path(@room.user) unless @room.user.nil?
+    .col-md-8.col-sm-6.col-xs-12
+      - if user_signed_in?
+        = render partial: 'rooms/report', :locals => { room: @room, user: current_user }
+      - else
+        .panel.panel-default
+           .panel-body Sign In To Participate
 

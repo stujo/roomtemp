@@ -9,7 +9,11 @@ class RoomsController < ApplicationController
   # GET /rooms
   # GET /rooms.json
   def index
-    @rooms = Room.all
+    @rooms = Room.paginate(:page => params[:page])
+    respond_to do |format|
+      format.html
+      format.js # add this line for your js template
+    end
   end
 
   # GET /rooms/1

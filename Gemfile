@@ -15,6 +15,10 @@ gem 'pg'
 gem 'rolify'
 gem 'simple_form'
 gem 'slim-rails'
+
+#http://christianvarga.com/simple-infinite-scroll-with-rails-and-jquery/
+gem 'will_paginate', '~> 3.0.5'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]

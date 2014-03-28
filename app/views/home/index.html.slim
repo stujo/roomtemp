@@ -1,3 +1,5 @@
 h1.page-heading Active Rooms
-- @rooms.each do |room|
-  = render partial: 'rooms/thumbnail', :locals => { room: room }
+
+.room-container id="home-rooms"
+  - @rooms.each do |room|
+    = render partial: 'rooms/thumbnail', :locals => { room: room }
