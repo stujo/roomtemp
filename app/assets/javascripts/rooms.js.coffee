@@ -2,8 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
-  highColor = 'ff0000'
-  lowColor = '00ff00'
+  highColor = 'FFCCCC'
+  lowColor = 'CCCCFF'
   maxScore = 100
 
   splitColor = (hexcolor) ->
@@ -34,9 +34,10 @@ $ ->
     thumb = $(thumbnail)
     if newTemperature != null
       thumb.data('temperature',newTemperature)
-    temperature = thumb.data('temperature')
+    temperature = Math.abs(thumb.data('temperature'))
     output = colorSpace(temperature)
     thumb.css('background-color', output)
+    thumb.find('.room_tagline').text(temperature)
 
 
   homeRooms = $('#home-rooms')
