@@ -7,5 +7,8 @@
   .well
     h3 Active Rooms
     .room-container id="home-rooms"
-      - @rooms.each do |room|
-        = render partial: 'rooms/thumbnail', :locals => { room: room }
+      .row
+        - @rooms.each do |room|
+          .col-xs-12.col-sm-4.col-md-3
+            .thumbnail
+              = render partial: 'rooms/thumbnail', :locals => { room: room }

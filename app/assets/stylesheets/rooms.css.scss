@@ -7,10 +7,10 @@
   height: 200px;
 }
 
-.room-container .room_thumbnail {
-  width: 200px;
-  float: left;
-}
+//.room-container .room_thumbnail {
+//  width: 200px;
+//  float: left;
+//}
 .room_tagline
 {
   color: #AAAAAA;
@@ -64,7 +64,7 @@
 .room_inactive_toggle + label, .room_active_toggle + label
 {
   display: inline-block;
-  width: 100px;
+  width: 50%;
 }
 
 a.room_active_label
