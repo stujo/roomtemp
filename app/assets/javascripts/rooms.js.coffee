@@ -3,32 +3,18 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
   highColor = 'FFCCCC'
-  lowColor = 'CCCCFF'
+  midColor = 'EEDDEE'
+  lowColor = 'DDEEFF'
   maxScore = 100
 
-  splitColor = (hexcolor) ->
-    num =  parseInt(hexcolor,16)
-    {r: (num >> 16), g: (num >> 8 & 0x00FF), b: (num & 0x0000FF) }
 
-  highRGB = splitColor(highColor)
-  lowRGB = splitColor(lowColor)
-  centRGB = {
-    r: (highRGB.r - lowRGB.r)
-    g: (highRGB.g - lowRGB.g)
-    b: (highRGB.b - lowRGB.b)
-  }
+  rainbow = new Rainbow()
+  rainbow.setNumberRange(0, maxScore)
+  rainbow.setSpectrum(lowColor, midColor, highColor);
 
-  format2Hex2 = (decimal) ->
-    ("00" + decimal.toString(16)).substr(-2)
 
   colorSpace = (score) ->
-    cent = Math.abs(score) / maxScore.toFixed(2)
-    outputRGB = {
-      r: Math.floor (centRGB.r * cent) + lowRGB.r
-      g: Math.floor (centRGB.g * cent) + lowRGB.g
-      b: Math.floor (centRGB.b * cent) + lowRGB.b
-    }
-    '#' +  format2Hex2(outputRGB.r) + format2Hex2(outputRGB.g) + format2Hex2(outputRGB.b);
+    '#' + rainbow.colourAt(score)
 
   init_thumbnail_display = (thumbnail, newTemperature) ->
     thumb = $(thumbnail)

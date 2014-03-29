@@ -19,6 +19,9 @@ gem 'slim-rails'
 #http://christianvarga.com/simple-infinite-scroll-with-rails-and-jquery/
 gem 'will_paginate', '~> 3.0.5'
 
+#https://github.com/Intrepidd/rainbowvis-rails
+gem 'rainbowvis_rails'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
