@@ -1,0 +1,6 @@
+- if user_signed_in?
+  = render partial: 'rooms/report', :locals => { room: @room, user: current_user, current_vote: @currentVote }
+- else
+  .panel.panel-default
+     .panel-body Sign In To Participate
+

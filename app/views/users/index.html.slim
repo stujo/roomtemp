@@ -8,7 +8,6 @@ h3 Users
         th Registered
         th Role
         th
-        th
     tbody
       - @users.each do |user|
         tr
@@ -16,8 +15,7 @@ h3 Users
           td= user.email
           td= user.created_at.to_date
           td
-            = user.roles.first.name.titleize unless user.roles.first.nil?
             - unless current_user == user
-              a.btn.btn-mini.btn-default data-toggle="modal" href="#role-options-#{user.id}" type="button"  Change role
+              a.btn.btn-mini.btn-default data-toggle="modal" href="#role-options-#{user.id}" type="button"
+                = user.roles.first.name.titleize unless user.roles.first.nil?
               = render 'user_role_options_modal', user: user
-          td= link_to("Delete user", user_path(user), :data =>   confirm=("Are you sure?" ) , :method => :delete, :class => 'btn btn-mini') unless user == current_user

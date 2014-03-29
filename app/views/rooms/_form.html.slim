@@ -1,9 +1,11 @@
-= simple_form_for(@room) do |f|
-  = f.error_notification
+.roomtempform
+  = simple_form_for(@room) do |f|
+    .form-group
+      = f.label :name
+      = f.text_field :name, :autofocus => true, class: 'form-control'
 
-  .form-inputs
-    = f.input :name
-    = f.association :user
+    .form-group
+      = f.label :owner
+      = collection_select(:room, :user, User.with_role(:admin), :id, :name)
 
-  .form-actions
-    = f.button :submit
+    = f.button :submit, 'Update', :class => 'btn-primary'

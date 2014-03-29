@@ -65,4 +65,10 @@ $ ->
 
   setTimeout pollForUpdates, pollInterval
 
+  $('form.room-form-ajax-on-radio-change').on('click', 'input[type=radio]', (event)->
+    form = $(event.target).closest("form")
+    form.append('<input type="hidden" name="roomtemp_suppress_messages" value="1"/>')
+    form.submit()
+  )
+
 

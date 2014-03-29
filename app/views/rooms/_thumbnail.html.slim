@@ -1,3 +1,4 @@
-.room_thumbnail id="room-thumbnail-#{room.id}" data-temperature="#{room.cached_temperature}" data-name="#{room.name}" data-room-id="#{room.id}" data-url="#{room_path(room)}"
+.room_thumbnail class=(room.active? ? 'room_active' : 'room_inactive') id="room-thumbnail-#{room.id}" data-temperature="#{room.cached_temperature}" data-name="#{room.name}" data-room-id="#{room.id}" data-url="#{vote_room_path(room)}"
  .room_name = room.name
  .room_tagline
+ .room_active_label

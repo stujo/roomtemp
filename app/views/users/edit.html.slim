@@ -1,0 +1,10 @@
+h2
+  | Edit #{@user.name}
+.roomtempform
+  = simple_form_for(@user, :url => user_path(@user), :html => { :method => :put, :class => 'form-vertical' }) do |f|
+    = f.error_notification
+    = display_base_errors @user
+    .form-group
+      = f.label :name
+      = f.text_field :name, :autofocus => true, class: 'form-control'
+    = f.button :submit, 'Update', :class => 'btn-primary'

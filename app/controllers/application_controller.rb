@@ -16,6 +16,11 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def roomtemp_suppress_messages?
+    suppress = params.permit('roomtemp_suppress_messages')['roomtemp_suppress_messages']
+    '1' == suppress.to_s
+  end
+
   def miniprofiler
     Rack::MiniProfiler.authorize_request # if user.admin?
     end

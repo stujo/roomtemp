@@ -1,6 +1,11 @@
-h3 User
-p
-  | User: #{@user.name}
+h3 #{@user.name}
 p
   | Email: #{@user.email if @user.email}
+
+-if @user.admin?
+  -unless @user.rooms.nil?
+    h3 Rooms
+    = render partial: 'rooms/list', :locals => { rooms: @user.rooms }
+
+br
 = link_to 'Edit account', edit_user_path

@@ -1,0 +1,9 @@
+/span class=(room.active? ? 'room_active' : 'room_inactive')
+/  a.btn.btn-mini.btn-default.room_active_label data-toggle="modal" href="#room-status-#{room.id}" type="button"
+/= render 'rooms/room_status_modal', room: room, return_path: url_for
+
+
+
+= simple_form_for room, :url => room_path(room), :html => {:method => :put, :class => 'form-horizontal room-form-ajax-on-radio-change' } do |f|
+  = f.hidden_field :return_path, value: url_for
+  = render 'rooms/room_status_form_fragment', room: room, f: f

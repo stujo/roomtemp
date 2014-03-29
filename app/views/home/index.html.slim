@@ -1,5 +1,11 @@
-h1.page-heading Active Rooms
+.jumbotron
+  h1
+    'Room Temperature
+  p A simple app to display how people are feeling in a given room
 
-.room-container id="home-rooms"
-  - @rooms.each do |room|
-    = render partial: 'rooms/thumbnail', :locals => { room: room }
+- unless @rooms.nil? || @rooms.empty?
+  .well
+    h3 Active Rooms
+    .room-container id="home-rooms"
+      - @rooms.each do |room|
+        = render partial: 'rooms/thumbnail', :locals => { room: room }

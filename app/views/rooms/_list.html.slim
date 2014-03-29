@@ -1,0 +1,16 @@
+table.table.table-condensed
+  thead
+  tr
+    th Name
+    th User
+    th Status
+    th Options
+
+  tbody
+    - rooms.each do |room|
+      tr
+        td = link_to room.name, room
+        td = link_to room.user_name, user_path(room.user) unless room.user.nil?
+        td = render 'rooms/room_status_toggle', room: room
+
+        td = link_to 'Edit', edit_room_path(room)

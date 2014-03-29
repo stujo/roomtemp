@@ -20,6 +20,62 @@
   line-height: 150px;
 }
 
+.room_active_label,.room_inactive_toggle + label, .room_active_toggle + label
+{
+  display: block;
+  font: bold 15px Sans-Serif;
+  text-align: center;
+  text-shadow: rgba(255,255,255,0.5) 0px 1px 0px;
+  position: relative;
+  width: 100%;
+  color: #6a6340;
+  -webkit-box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+  -moz-box-shadow:    0px 0px 3px rgba(0,0,0,0.3);
+  box-shadow:         0px 0px 3px rgba(0,0,0,0.3);
+  color: #333;
+}
+.room_active .room_active_label, .room_active_toggle:checked + label
+{
+  background-color: #BFDC7A;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#BFDC7A), to(#8EBF45));
+  background-image: -webkit-linear-gradient(top, #BFDC7A, #8EBF45);
+  background-image:    -moz-linear-gradient(top, #BFDC7A, #8EBF45);
+  background-image:     -ms-linear-gradient(top, #BFDC7A, #8EBF45);
+  background-image:      -o-linear-gradient(top, #BFDC7A, #8EBF45);
+}
+.room_active .room_active_label:before, .room_active_toggle + label:before {  content:"ACTIVE"; }
+
+.room_inactive .room_active_label, .room_inactive_toggle:checked + label
+{
+  background-color: #BFDC7A;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#DCBF7A), to(#BF8E45));
+  background-image: -webkit-linear-gradient(top, #DCBF7A, #BF8E45);
+  background-image:    -moz-linear-gradient(top, #DCBF7A, #BF8E45);
+  background-image:     -ms-linear-gradient(top, #DCBF7A, #BF8E45);
+  background-image:      -o-linear-gradient(top, #DCBF7A, #BF8E45);
+}
+.room_inactive .room_active_label:before, .room_inactive_toggle + label:before {  content:"CLOSED"; }
+
+.room_inactive_toggle, .room_active_toggle
+{
+  display: none;
+}
+
+.room_inactive_toggle + label, .room_active_toggle + label
+{
+  display: inline-block;
+  width: 100px;
+}
+
+a.room_active_label
+{
+  width: 100px;
+}
+
+.room_status_toggles
+{
+
+}
 
 .room_name
 {

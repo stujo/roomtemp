@@ -1,12 +1,12 @@
 class RoomsController < ApplicationController
-  before_action :set_room, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index]
-  before_action :check_admin!, except: [:index, :show]
+  before_action :set_room, only: [:show, :edit,:vote, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :check_admin!, except: [:vote]
 
   # GET /rooms
   # GET /rooms.json
   def index
-    @rooms = Rooms.order(id: :desc)
+    @rooms = Room.order(id: :desc)
   end
 
   def temperatures
@@ -25,7 +25,14 @@ class RoomsController < ApplicationController
   # GET /rooms/1
   # GET /rooms/1.json
   def show
-    @currentVote = CurrentVote.where({user_id: current_user.id,room_id: params.require('id')}).first
+  end
+
+  def vote
+    if @room.active?
+      @currentVote = CurrentVote.where({user_id: current_user.id,room_id: params.require('id')}).first
+    else
+      redirect_to root_path, notice: "#{@room.name} is not currently active"
+    end
   end
 
   # GET /rooms/new
@@ -58,7 +65,8 @@ class RoomsController < ApplicationController
   def update
     respond_to do |format|
       if @room.update(room_params)
-        format.html { redirect_to @room, notice: 'Room was successfully updated.' }
+        return_path = params.require(:room).permit(:return_path)[:return_path] || @room
+        format.html { redirect_to return_path, (roomtemp_suppress_messages? ? {} : {notice: 'Room was successfully updated.'}) }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -85,6 +93,6 @@ class RoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.require(:room).permit(:name, :user_id)
+      params.require(:room).permit(:name, :user_id, :status)
     end
 end

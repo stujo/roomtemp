@@ -1,0 +1,5 @@
+.room_status_toggles
+  = f.radio_button :status, 1, id:"room-status-#{room.id}-status-1", class:'toggle room_active_toggle'
+  label.btn.btn-mini for="room-status-#{room.id}-status-1"
+  = f.radio_button :status, 0, id:"room-status-#{room.id}-status-0", class:'toggle room_inactive_toggle'
+  label.btn.btn-mini for="room-status-#{room.id}-status-0"

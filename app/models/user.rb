@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :rooms
+
   def admin?
     self.has_role?(:admin)
   end
