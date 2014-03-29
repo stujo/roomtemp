@@ -3,7 +3,9 @@ Roomtemp::Application.routes.draw do
 
   resources :votes
 
-  resources :rooms
+  resources :rooms do
+    get '/report/:score', to: 'current_votes#report', as: 'room_report'
+  end
 
   root :to => "home#index"
   devise_for :users, :controllers => {:registrations => "registrations"}

@@ -4,7 +4,6 @@ class CreateVotes < ActiveRecord::Migration
       t.integer :score
       t.references :room, index: true
       t.references :user, index: true
-
       t.timestamps
     end
   end

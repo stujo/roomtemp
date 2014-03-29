@@ -7,4 +7,8 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, :alert => exception.message
   end
 
+  def check_admin!
+    authorize! :admin, current_user, :message => 'Not authorized as an administrator.'
+  end
+
 end

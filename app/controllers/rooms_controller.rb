@@ -1,10 +1,7 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [:show, :edit, :update, :destroy]
-  before_action :check_admin!, except: [:show, :index]
-
-  def check_admin!
-    authorize! :index, @user, :message => 'Not authorized as an administrator.'
-  end
+  before_action :authenticate_user!, except: [:index]
+  before_action :check_admin!, except: [:index, :show]
 
   # GET /rooms
   # GET /rooms.json
@@ -19,6 +16,7 @@ class RoomsController < ApplicationController
   # GET /rooms/1
   # GET /rooms/1.json
   def show
+    @currentVote = CurrentVote.where({user_id: current_user.id,room_id: params.require('id')}).first
   end
 
   # GET /rooms/new

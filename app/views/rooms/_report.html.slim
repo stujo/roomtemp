@@ -1,12 +1,8 @@
-.room_report id="room-report-#{room.id}" data-name="#{room.name}" data-url="#{room_path(room)}"
+.room_report id="room-report-#{room.id}" data-current-score="#{(current_vote.nil? ? '' : current_vote.score)}" data-room-id="#{room.id}" data-url="#{room_path(room)}"
   h3 Your Opinion
   .btn-group.btn-group-justified.room_opinions
-    .btn-group
-      button.btn.btn-default type="button" data-score="0" Frozen
-    .btn-group
-      button.btn.btn-default type="button" data-score="33" Cool
-    .btn-group
-      button.btn.btn-default type="button" data-score="67" Warm
-    .btn-group
-      button.btn.btn-default type="button" data-score="100" Hot
+    - for rating in [["0","Frozen"],["33","Cool"],["50","Comfy"],["67","Warm"],["100","Hot"]]
+      .btn-group
+        button.btn.btn-default id="room-report-#{room.id}-btn-#{rating[0]}" type="button" data-score="#{rating[0]}"
+          = rating[1]
 
