@@ -5,10 +5,23 @@
 
 - unless @rooms.nil? || @rooms.empty?
   .well
-    h3 Active Rooms
+    h3
+      'Active Rooms
+      span.visible-xs
+        br
+      small
+        a= link_to "Refresh Room List", root_path
     .room-container id="home-rooms"
       .row
         - @rooms.each do |room|
           .col-xs-12.col-sm-4.col-md-3
             .thumbnail
               = render partial: 'rooms/thumbnail', :locals => { room: room }
+- else
+  .well
+    h3
+      'No Active Rooms
+      span.visible-xs
+        br
+      small
+        a= link_to "Refresh Room List", root_path

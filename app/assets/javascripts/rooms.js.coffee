@@ -1,14 +1,11 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-$ ->
+(->
   highColor = 'FFCCCC'
   midColor = 'EEDDEE'
   lowColor = 'DDEEFF'
   maxScore = 100
-
-  pollInterval = 10000
-
 
   rainbow = new Rainbow()
   rainbow.setNumberRange(0, maxScore)
@@ -16,6 +13,14 @@ $ ->
 
   colorSpace = (score) ->
     '#' + rainbow.colourAt(score)
+
+  #Export colorSpace service
+  window.RoomTemp = window.RoomTemp || {}
+  window.RoomTemp.colorSpace = colorSpace
+)()
+
+$ ->
+  colorSpace = window.RoomTemp?.colorSpace || (score)-> '#FFFFFF'
 
   $(".room_thumbnail").on( "init.roomtemp", ( event, newTemperature ) ->
     thumb = $(event.target)
@@ -43,6 +48,7 @@ $ ->
         thumb.data 'temperature', newTemp
         thumb.trigger 'init.roomtemp'
     )
+  pollInterval = 10000
 
   pollForUpdates = () ->
     roomIds = []
@@ -70,5 +76,6 @@ $ ->
     form.append('<input type="hidden" name="roomtemp_suppress_messages" value="1"/>')
     form.submit()
   )
+
 
 

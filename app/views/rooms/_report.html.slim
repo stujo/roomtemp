@@ -1,9 +1,12 @@
 .room_report id="room-report-#{room.id}" data-current-score="#{(current_vote.nil? ? '' : current_vote.score)}" data-room-id="#{room.id}" data-url="#{room_path(room)}"
   h3
     'You are in the #{room.name} room
-  .btn-group.btn-group-justified.room_opinions
-    - for rating in [["0","Frozen"],["33","Cool"],["50","Comfy"],["67","Warm"],["100","Hot"]]
-      .btn-group
-        button.btn.btn-default id="room-report-#{room.id}-btn-#{rating[0]}" type="button" data-score="#{rating[0]}"
-          = rating[1]
+  .room_opinions
+    .row
+      .col-sm-1.hidden-xs
+      - for rating in [["0","Frozen"],["33","Cool"],["50","Comfy"],["67","Warm"],["100","Hot"]]
+        .col-xs-12.col-sm-2.col-md-2.col-lg-2
+          button.btn.btn-default id="room-report-#{room.id}-btn-#{rating[0]}" type="button" data-score="#{rating[0]}"
+            = rating[1]
+      .col-sm-1.hidden-xs
 

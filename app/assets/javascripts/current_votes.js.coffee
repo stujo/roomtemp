@@ -13,6 +13,8 @@ $ ->
         btn.removeClass('active')
       else
         btn.addClass('active')
+      if window.RoomTemp?.colorSpace != null
+        btn.css('background-color', window.RoomTemp.colorSpace(btn.data('score')))
     )
 
   $('.room_report').on('click','button', (event) ->
