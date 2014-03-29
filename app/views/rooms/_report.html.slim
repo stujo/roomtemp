@@ -1,5 +1,6 @@
 .room_report id="room-report-#{room.id}" data-current-score="#{(current_vote.nil? ? '' : current_vote.score)}" data-room-id="#{room.id}" data-url="#{room_path(room)}"
-  h3 Your Opinion
+  h3
+    'You are in the #{room.name} room
   .btn-group.btn-group-justified.room_opinions
     - for rating in [["0","Frozen"],["33","Cool"],["50","Comfy"],["67","Warm"],["100","Hot"]]
       .btn-group

@@ -10,5 +10,4 @@ class ApplicationController < ActionController::Base
   def check_admin!
     authorize! :admin, current_user, :message => 'Not authorized as an administrator.'
   end
-
 end
