@@ -6,10 +6,19 @@ class RoomsController < ApplicationController
   # GET /rooms
   # GET /rooms.json
   def index
-    @rooms = Room.paginate(:page => params[:page])
+    @rooms = Rooms.order(id: :desc)
+  end
+
+  def temperatures
     respond_to do |format|
-      format.html
-      format.js # add this line for your js template
+      ids = params.require('ids')
+      temperatures = {}
+      ids.each do |id|
+        temperatures[id] = Room.find(id).cached_temperature
+      end
+      format.json do
+        render json: temperatures
+      end
     end
   end
 

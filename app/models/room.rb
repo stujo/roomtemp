@@ -9,4 +9,8 @@ class Room < ActiveRecord::Base
   def temperature
     current_votes.average(:score)
   end
+
+  def cached_temperature
+    Rails.cache.fetch([self, "temperature"]) { temperature }
+  end
 end

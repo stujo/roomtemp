@@ -22,6 +22,9 @@ gem 'will_paginate', '~> 3.0.5'
 #https://github.com/Intrepidd/rainbowvis-rails
 gem 'rainbowvis_rails'
 
+#http://railscasts.com/episodes/368-miniprofiler
+gem 'rack-mini-profiler'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
