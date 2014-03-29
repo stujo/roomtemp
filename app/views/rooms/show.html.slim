@@ -2,9 +2,14 @@
   .row
     .col-md-4.col-sm-6.col-xs-12
       = render partial: 'rooms/thumbnail', :locals => { room: @room }
+      ul
+        li = link_to 'Edit Room', edit_room_path(@room)
+        -  unless @room.user.nil?
+          li = link_to @room.user_name, user_path(@room.user)
 
     .col-md-8.col-sm-6.col-xs-12
-      = render 'rooms/room_status_toggle', room: @room
+      .well
+        = render 'rooms/room_status_toggle', room: @room
 
       = render partial: 'rooms/history', :locals => { room: @room, votes: @votes }
 
