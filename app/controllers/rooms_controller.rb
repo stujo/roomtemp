@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  before_action :set_room, only: [:show, :edit,:vote, :update, :destroy]
+  before_action :set_room, only: [:show, :edit,:vote, :reset_current_votes, :history_data,:current_data, :update, :destroy]
   before_action :authenticate_user!
   before_action :check_admin!, except: [:vote]
 
@@ -9,15 +9,46 @@ class RoomsController < ApplicationController
     @rooms = Room.order(id: :desc)
   end
 
+  def reset_current_votes
+    respond_to do |format|
+      @room.current_votes.destroy_all
+      format.json do
+        render json: {}
+      end
+      format.html do
+        redirect_to return_path, (roomtemp_suppress_messages? ? {} : {notice: 'Current Votes Reset'})
+      end
+    end
+  end
+
   def temperatures
     respond_to do |format|
       ids = params.require('ids')
       temperatures = {}
       ids.each do |id|
-        temperatures[id] = Room.find(id).cached_temperature
+        temperatures[id] = Room.find(id).cached_temperature_status
       end
       format.json do
         render json: temperatures
+      end
+    end
+  end
+
+  def history_data
+    respond_to do |format|
+      today = Time.now
+      historical_votes = @room.votes.where(["created_at > ?", Time.now - 4.hour]).order(created_at: :asc).select("score, created_at as date")
+      format.json do
+        render json: historical_votes, only: [:date, :score ]
+      end
+    end
+  end
+
+  def current_data
+    respond_to do |format|
+      current_votes = @room.current_votes.count(:group => "score")
+      format.json do
+        render json: current_votes
       end
     end
   end

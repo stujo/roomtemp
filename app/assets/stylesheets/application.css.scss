@@ -14,3 +14,18 @@
  *= require_self
  */
 
+
+button.room_loading,button.room_loading:active,button.room_loading:hover,button.room_loading:focus {
+  color: #AAAAAA;
+  background-color: #EEEEEE;
+}
+
+button.room_loading:after {
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  font-size-adjust: -25%;
+  display: inline-block;
+  text-decoration: inherit;
+  content:"...";
+}

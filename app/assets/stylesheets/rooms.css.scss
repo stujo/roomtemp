@@ -86,8 +86,10 @@ a.room_active_label
   background-image: linear-gradient(#fafafa, #eaeaea);
 }
 
-.room_opinions button
+.room_name .room-current-votes
 {
-  width: 100%;
-  margin-bottom: 15px;
+  display: inline-block;
+  float: right;
+  color: #AAAAAA;
+  font-size: 80%;
 }

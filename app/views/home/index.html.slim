@@ -1,27 +1,30 @@
-.jumbotron
-  h1
-    'Room Temperature
-  p A simple app to display how people are feeling in a given room
-
-- unless @rooms.nil? || @rooms.empty?
-  .well
-    h3
-      'Active Rooms
-      span.visible-xs
-        br
-      small
-        a= link_to "Refresh Room List", root_path
-    .room-container id="home-rooms"
-      .row
-        - @rooms.each do |room|
-          .col-xs-12.col-sm-4.col-md-3
-            .thumbnail
-              = render partial: 'rooms/thumbnail', :locals => { room: room }
-- else
-  .well
-    h3
-      'No Active Rooms
-      span.visible-xs
-        br
-      small
-        a= link_to "Refresh Room List", root_path
+- unless user_signed_in?
+  .jumbotron
+    h1 Room Temperature
+    p A simple app to display how people are feeling in a given room
+    p
+      a.btn.btn-primary.btn-lg role="button" href=new_user_session_path Log In to Start
+-else
+  - unless @rooms.nil? || @rooms.empty?
+    h1.page-heading Room Temperature
+    .well
+      h3
+        'Active Rooms
+        span.visible-xs
+          br
+        small
+          a= link_to "Refresh Room List", root_path
+      .room-container id="home-rooms"
+        .row
+          - @rooms.each do |room|
+            .col-xs-12.col-sm-4.col-md-3
+              .thumbnail
+                = render partial: 'rooms/thumbnail', :locals => { room: room }
+  - else
+    .well
+      h3
+        'No Active Rooms
+        span.visible-xs
+          br
+        small
+          a= link_to "Refresh Room List", root_path

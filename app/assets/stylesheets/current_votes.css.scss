@@ -1,3 +1,18 @@
 // Place all the styles related to the CurrentVotes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+.room_opinions button, button.room-reset-votes
+{
+  width: 100%;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+
+.room_opinions button.active
+{
+  border: solid #333
+}

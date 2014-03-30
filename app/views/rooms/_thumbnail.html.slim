@@ -1,4 +1,7 @@
-.room_thumbnail class=(room.active? ? 'room_active' : 'room_inactive') id="room-thumbnail-#{room.id}" data-temperature="#{room.cached_temperature}" data-name="#{room.name}" data-room-id="#{room.id}" data-url="#{vote_room_path(room)}"
- .room_name = room.name
+.room_thumbnail class=(room.active? ? 'room_active' : 'room_inactive') id="room-thumbnail-#{room.id}" data-votes="#{room.cached_temperature_status[0]}" data-temperature="#{room.cached_temperature_status[1]}" data-name="#{room.name}" data-room-id="#{room.id}" data-url="#{vote_room_path(room)}"
+ .room_name
+   = room.name
+   '
+   span.room-current-votes
  .room_tagline
  .room_active_label

@@ -28,3 +28,18 @@ $ ->
       )
   )
   init_voting_buttons($('.room_report'))
+
+  $('.room-reset-votes').on('click', (event) ->
+    button = $(event.target)
+    url = $(button).data('post-url')
+    if url
+      button.addClass('room_loading')
+      $.post( url, ( data ) ->
+        reload = $(button).data('post-reload')
+        if reload
+          window.location.reload(true)
+        else
+          button.removeClass('room_loading')
+          button.text('Current Votes Reset')
+      )
+  )

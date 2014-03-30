@@ -22,8 +22,11 @@ gem 'will_paginate', '~> 3.0.5'
 #https://github.com/Intrepidd/rainbowvis-rails
 gem 'rainbowvis_rails'
 
+#Graphs!
+gem 'flot-rails'
+
 #http://railscasts.com/episodes/368-miniprofiler
-gem 'rack-mini-profiler'
+#gem 'rack-mini-profiler'
 
 group :development do
   gem 'better_errors'

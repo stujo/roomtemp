@@ -13,7 +13,6 @@ class ApplicationController < ActionController::Base
     authorize! :admin, current_user, :message => 'Not authorized as an administrator.'
   end
 
-
   private
 
   def roomtemp_suppress_messages?
@@ -22,6 +21,8 @@ class ApplicationController < ActionController::Base
   end
 
   def miniprofiler
-    Rack::MiniProfiler.authorize_request # if user.admin?
+    if defined? Rack::MiniProfiler
+      Rack::MiniProfiler.authorize_request # if user.admin?
     end
+  end
 end

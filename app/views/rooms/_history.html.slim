@@ -1,3 +1,2 @@
-.room_history class=(room.active? ? 'room_active' : '') id="room-history-#{room.id}" data-name="#{room.name}" data-room-id="#{room.id}"
- .room_name = room.name
- .graph GRAPH
+.roomtemp_plot.roomtemp_plot_small.room_history id="room-history-graph-#{room.id}" data-data-url=(history_data_room_path(room)) data-graph-format="timeline"
+

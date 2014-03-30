@@ -3,6 +3,7 @@ class Room < ActiveRecord::Base
   delegate :name, to: :user, prefix: true, allow_nil: true
   validates :name, uniqueness: { case_sensitive: true }
   has_many :current_votes
+  has_many :votes
 
   STATUS_CLOSED = 0
   STATUS_OPEN = 1
@@ -16,11 +17,17 @@ class Room < ActiveRecord::Base
     status == STATUS_OPEN
   end
 
-  def temperature
-    current_votes.average(:score)
+  def temperature_status
+    count = current_votes.count()
+    if count > 0
+      [count, current_votes.average(:score).round()]
+    else
+      [0,-1]
+    end
+
   end
 
-  def cached_temperature
-    Rails.cache.fetch([self, "temperature"]) { temperature }
+  def cached_temperature_status
+    Rails.cache.fetch([self, "temperature_status"]) { temperature_status }
   end
 end

@@ -14,4 +14,8 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require rainbowvis
+//= require jquery.flot
+//= require jquery.flot.pie
+//= require jquery.flot.time
+//= require jquery.flot.resize
 //= require_tree .

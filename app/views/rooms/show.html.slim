@@ -1,16 +1,33 @@
+h1.page-heading
+  =@room.name
+  '
+  small
+    = link_to 'Edit Room', edit_room_path(@room)
 .room-show
   .row
-    .col-xs-12.col-sm-4.col-md-3
+    .col-xs-12.col-sm-4.col-md-4
       .thumbnail
         = render partial: 'rooms/thumbnail', :locals => { room: @room }
-      ul
-        li = link_to 'Edit Room', edit_room_path(@room)
-        -  unless @room.user.nil?
-          li = link_to @room.user_name, user_path(@room.user)
+        .caption
+          h3.room-current-temperature Current Average
 
-    .col-md-9.col-sm-8.col-xs-12
-      .well
-        = render 'rooms/room_status_toggle', room: @room
+    .col-xs-12.col-sm-4.col-md-4
+      .thumbnail
+        .roomtemp_plot.roomtemp_plot_small.current_votes id="room-current-pie-#{@room.id}" data-data-url=(current_data_room_path(@room)) data-graph-format="pie"
+        .caption
+          h3.room-current-vote-count
 
-      = render partial: 'rooms/history', :locals => { room: @room, votes: @votes }
+    .col-xs-12.col-sm-4.col-md-4
+      .panel.panel-default
+        .panel-body
+          = render 'rooms/room_status_toggle', room: @room
+      .panel.panel-default
+        .panel-body
+          = render 'rooms/room_current_votes_reset', room: @room
+
+    .col-xs-12.col-sm-12.col-md-12
+      .thumbnail
+        = render partial: 'rooms/history', :locals => { room: @room, votes: @votes }
+        .caption
+          h3.room-total-vote-count History
 
