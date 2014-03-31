@@ -37,7 +37,7 @@ class RoomsController < ApplicationController
   def history_data
     respond_to do |format|
       today = Time.now
-      historical_votes = @room.votes.where(["created_at > ?", Time.now - 4.hour]).order(created_at: :asc).select("score, created_at as date")
+      historical_votes = @room.votes.where(["created_at > ?", Time.now - 1.hour]).order(created_at: :asc).select("score, created_at as date")
       format.json do
         render json: historical_votes, only: [:date, :score ]
       end

@@ -26,7 +26,9 @@ $ ->
   flotsamize = (data) ->
     results = []
     for row in data
-      results.push [Date.parse(row.date) - offset, row.score]
+      rowdata = [Date.parse(row.date) - offset, row.score]
+      results.push rowdata
+      console.log row.date + " ->" + rowdata
     if results.length <= 0
       null
     else
@@ -60,7 +62,9 @@ $ ->
     options.xaxis = {
       mode: "time"
       title: "Time"
-      minTickSize: [1, "hour"]
+      minTickSize: [5, "minute"]
+      min: (new Date().getTime() - offset) - 3600000
+      max: (new Date().getTime() - offset)
     } unless options.xaxis
     options.yaxis = {
       min: 0
@@ -77,29 +81,36 @@ $ ->
     } unless options.series
     options
 
+  plotData = (item) ->
+    plotter = $(item)
+    options = {}
+    url = plotter.data('data-url')
+    if url
+      $.post url,
+      (data) ->
+        switch plotter.data('graph-format')
+          when 'pie'
+            options = initPieOptions(options)
+            data = piesamize(data)
+          else
+            options = initTimeOptions(options)
+            data = flotsamize(data)
+        if data
+          $.plot(item, data, options)
+          plotter.show()
+        callback =  plotter.data('plot-complete-callback')
+        if callback
+          callback(plotter,data,options)
+        refreshIn = plotter.data('graph-refresh-in')
+        if refreshIn >= 1000
+          setTimeout( ->
+            plotData(item)
+          , refreshIn
+          )
+
   if plots && plots.length > 0
     plots.each((idx,item) ->
-      plotter = $(item)
-      url = plotter.data('data-url')
-
-      options = {}
-
-      if url
-        $.post url,
-          (data) ->
-            switch plotter.data('graph-format')
-              when 'pie'
-                options = initPieOptions(options)
-                data = piesamize(data)
-              else
-                options = initTimeOptions(options)
-                data = flotsamize(data)
-            if data
-              $.plot(item, data, options)
-              plotter.show()
-            callback =  plotter.data('plot-complete-callback')
-            if callback
-              callback(plotter,data,options)
+      plotData(item)
     )
 
 

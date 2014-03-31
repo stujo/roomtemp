@@ -104,5 +104,5 @@ $ ->
       item.parent().find('.room-total-vote-count').first().text("No Vote History")
     else
       cvCount = data[0].length
-      item.parent().find('.room-total-vote-count').first().text("#{cvCount} Total Vote#{if cvCount > 1 then 's' else ''} in the last 4 hours")
+      item.parent().find('.room-total-vote-count').first().text("#{cvCount} Total Vote#{if cvCount > 1 then 's' else ''} in the last hour")
   )
